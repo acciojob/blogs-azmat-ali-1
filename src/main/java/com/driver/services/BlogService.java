@@ -7,6 +7,8 @@ import com.driver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BlogService {
     @Autowired
@@ -20,10 +22,12 @@ public class BlogService {
         Blog blog = new Blog();
         blog.setTitle(title);
         blog.setContent(content);
-        if(userRepository1.findById(userId).isPresent()){
-            User user = userRepository1.findById(userId).get();
-            blog.setUser(user);
-        }
+
+        User user = userRepository1.findById(userId).get();
+        blog.setUser(user);
+        List<Blog> blogList = user.getBlogList();
+        blogList.add(blog);
+        user.setBlogList(blogList);
         blogRepository1.save(blog);
         return blog;
     }
