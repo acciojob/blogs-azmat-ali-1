@@ -15,7 +15,7 @@ public class BlogService {
     @Autowired
     UserRepository userRepository1;
 
-    public void createAndReturnBlog(Integer userId, String title, String content) {
+    public Blog createAndReturnBlog(Integer userId, String title, String content) {
         //create a blog at the current time
         Blog blog = new Blog();
         blog.setTitle(title);
@@ -25,6 +25,7 @@ public class BlogService {
             blog.setUser(user);
         }
         blogRepository1.save(blog);
+        return blog;
     }
 
     public void deleteBlog(int blogId){
