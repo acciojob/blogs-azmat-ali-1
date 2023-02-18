@@ -1,5 +1,8 @@
 package com.driver.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +19,7 @@ public class User{
     private String lastname;
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @JsonManagedReference
     List<Blog> blogList = new ArrayList<>();
 
     public User() {

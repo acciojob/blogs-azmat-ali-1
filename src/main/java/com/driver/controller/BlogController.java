@@ -4,6 +4,7 @@ package com.driver.controller;
 import com.driver.models.Blog;
 import com.driver.repositories.BlogRepository;
 import com.driver.services.BlogService;
+import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ public class BlogController {
     private BlogRepository blogRepository;
 
     @PostMapping("/create")
+    @JsonIgnore
     public ResponseEntity<Blog> createBlog(@RequestParam Integer userId ,
                                               @RequestParam String title,
                                               @RequestParam String content) {

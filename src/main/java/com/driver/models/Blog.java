@@ -1,5 +1,8 @@
 package com.driver.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,6 +19,7 @@ public class Blog{
     private Date pubDate;
     @ManyToOne
     @JoinColumn
+    @JsonBackReference
     private User user;
 
     @OneToMany(mappedBy = "blog",cascade = CascadeType.ALL)
