@@ -9,6 +9,7 @@ import org.junit.Ignore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,13 +22,14 @@ public class BlogService {
 
     public Blog createAndReturnBlog(Integer userId, String title, String content) throws Exception {
         //create a blog at the current time
-        if( !userRepository1.findById(userId).isPresent()){
-            throw new Exception();
-        }
+//        if( !userRepository1.findById(userId).isPresent()){
+//            throw new Exception();
+//        }
         User user = userRepository1.findById(userId).get();
 
         Blog blog = new Blog(title,content,user);
-        blogRepository1.save(blog);
+        blog.setPubDate(new Date());
+        userRepository1.save(user);
         user.getBlogList().add(blog);
         return blog;
 
