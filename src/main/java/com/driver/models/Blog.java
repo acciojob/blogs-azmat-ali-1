@@ -10,7 +10,7 @@ public class Blog{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String tittle;
+    private String title;
     private String content;
     private Date pubDate;
     @ManyToOne
@@ -31,12 +31,12 @@ public class Blog{
         this.id = id;
     }
 
-    public String getTittle() {
-        return tittle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
