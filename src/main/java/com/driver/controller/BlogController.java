@@ -1,5 +1,6 @@
 package com.driver.controller;
 
+import com.driver.DTO.BLOGDTO;
 import com.driver.models.Blog;
 import com.driver.repositories.BlogRepository;
 import com.driver.services.BlogService;
@@ -19,9 +20,9 @@ public class BlogController {
     private BlogRepository blogRepository;
 
     @PostMapping("/create")
-    public ResponseEntity<Blog> createBlog(@RequestParam Integer userId ,
-                                     @RequestParam String title,
-                                     @RequestParam String content) {
+    public ResponseEntity<BLOGDTO> createBlog(@RequestParam Integer userId ,
+                                              @RequestParam String title,
+                                              @RequestParam String content) {
         // Create a blog and add it under given user
 
         return new ResponseEntity<>(  blogService.createAndReturnBlog(userId,title,content),HttpStatus.CREATED);
