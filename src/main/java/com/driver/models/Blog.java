@@ -19,13 +19,18 @@ public class Blog{
     private Date pubDate;
     @ManyToOne
     @JoinColumn
-    @JsonBackReference
     private User user;
 
     @OneToMany(mappedBy = "blog",cascade = CascadeType.ALL)
     List<Image> imageList = new ArrayList<>();
 
     public Blog() {
+    }
+
+    public Blog(String title, String content, User user) {
+        this.title = title;
+        this.content = content;
+        this.user = user;
     }
 
     public int getId() {

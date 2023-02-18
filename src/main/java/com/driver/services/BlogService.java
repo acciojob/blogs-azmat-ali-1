@@ -19,18 +19,17 @@ public class BlogService {
     @Autowired
     UserRepository userRepository1;
 
-    public Blog createAndReturnBlog(Integer userId, String title, String content) {
+    public Blog createAndReturnBlog(Integer userId, String title, String content) throws Exception {
         //create a blog at the current time
-        Blog blog = new Blog();
-        blog.setTitle(title);
-        blog.setContent(content);
-
+        if( !userRepository1.findById(userId).isPresent()){
+            throw new Exception();
+        }
         User user = userRepository1.findById(userId).get();
-        blog.setUser(user);
-        List<Blog> blogList = user.getBlogList();
-        blogList.add(blog);
-        user.setBlogList(blogList);
-        userRepository1.save(user);
+
+        Blog blog = new Blog(title,content,user);
+        blogRepository1.save(blog);
+        user.getBlogList().add(blog);
+        return blog;
 
        //return dto
 //        USERDTO userdto = new USERDTO();
@@ -48,8 +47,6 @@ public class BlogService {
 //        blogdto.setUserdto(userdto);
 //        blogdto.setImageList(blog.getImageList());
 
-
-        return blogRepository1.findById(blogList.size()-1).get();
 
     }
 

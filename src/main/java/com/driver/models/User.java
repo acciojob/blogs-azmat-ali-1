@@ -19,7 +19,6 @@ public class User{
     private String lastname;
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    @JsonManagedReference
     List<Blog> blogList = new ArrayList<>();
 
     public User() {
