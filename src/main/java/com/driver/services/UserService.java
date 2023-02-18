@@ -5,9 +5,6 @@ import com.driver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class UserService {
     @Autowired
@@ -25,13 +22,11 @@ public class UserService {
         userRepository3.deleteById(userId);
     }
 
-    public User updateUser(Integer id, String password){
+    public void updateUser(Integer id, String password){
         if(userRepository3.findById(id).isPresent()){
             User user = userRepository3.findById(id).get();
             user.setPassword(password);
             userRepository3.updatePasswordById(password,id);
-            return user;
         }
-      return null;
     }
 }

@@ -13,7 +13,7 @@ public class ImageService {
     @Autowired
     ImageRepository imageRepository2;
 
-    public Image addImage(Integer blogId, String description, String dimensions){
+    public void addImage(Integer blogId, String description, String dimensions){
         //add an image to the blog
         Image image = new Image();
         image.setDescription(description);
@@ -23,7 +23,6 @@ public class ImageService {
             image.setBlog(blog);
         }
         imageRepository2.save(image);
-        return image;
     }
 
     public void deleteImage(Integer id){
@@ -35,8 +34,8 @@ public class ImageService {
         if( imageRepository2.findById(id).isPresent()){
             Image image  = imageRepository2.findById(id).get();
             String dimension = image.getDimensions();
-            String [] sd = screenDimensions.split("x");
-            String [] d  = dimension.split("x");
+            String [] sd = screenDimensions.split("X");
+            String [] d  = dimension.split("X");
             int x_plane = Integer.parseInt(sd[0])/Integer.parseInt(d[0]);
             int y_plane = Integer.parseInt(sd[1])/Integer.parseInt(d[1]);
             return x_plane*y_plane;
