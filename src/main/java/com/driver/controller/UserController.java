@@ -14,12 +14,12 @@ public class UserController {
     @Autowired
     UserService userService;
     @PostMapping("/create")
-    public ResponseEntity<Void> createUser(@RequestParam String username, @RequestParam String password) {
+    public ResponseEntity<User> createUser(@RequestParam String username, @RequestParam String password) {
         // create a new user with given username and password
-        userService.createUser(
+
+        return new ResponseEntity<>(userService.createUser(
                 username,password
-        );
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        ),HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{userId}")
